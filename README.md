@@ -22,8 +22,13 @@ Or install it yourself as:
 You will need to configure OmniAuth to use your uoc authentication.  This is generally done in Rails in the config/initializers/omniauth.rb with:
 
     Rails.application.config.middleware.use OmniAuth::Builder do
-        provider :crowd, :crowd_server_url=>"https://crowd.mycompanyname.com/crowd", :application_name=>"app", :application_password=>"password"
+        provider :uoc, :uoc_server_url=>"https://cv.uoc.edu/"
     end
+
+## References
+
+ * OmniAuth: https://github.com/intridea/omniauth/
+ * Especially thanks to [Rob Di Marco](https://github.com/robdimarco) and his [omniauth_crowd](https://github.com/robdimarco/omniauth_crowd) project that it was inspiration for me.
 
 ## Contributing
 

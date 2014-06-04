@@ -26,7 +26,7 @@ BODY
         private
         def retrieve_user_info!
           response = make_session_request
-          unless response.code.to_i != 200 || response.body.nil? || response.body == ''
+          unless response.status.to_i != 200 || response.body.nil? || response.body == ''
             doc = MultiXml.parse(response.body)
             session = doc.xpath('//session').first
             {
@@ -42,7 +42,7 @@ BODY
                 }
             }
           else
-            OmniAuth.logger.send(:warn, "(crowd) [retrieve_user_info!] response code: #{response.code.to_s}")
+            OmniAuth.logger.send(:warn, "(crowd) [retrieve_user_info!] response code: #{response.status.to_s}")
             OmniAuth.logger.send(:warn, "(crowd) [retrieve_user_info!] response body: #{response.body}")
             nil
           end

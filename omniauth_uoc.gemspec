@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = OmniauthUoc::VERSION
   spec.authors       = ['rromerogar']
   spec.email         = ['rromerogar@uoc.edu']
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ''
+  spec.summary       = %q{ OmniAuth provider that supports authentication against UOC REST apis. }
+  spec.homepage      = 'http://github.com/rromerogar/omniauth_uoc'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")

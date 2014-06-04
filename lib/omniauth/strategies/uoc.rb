@@ -5,6 +5,7 @@ module OmniAuth
       include OmniAuth::Strategy
 
       autoload :Configuration, 'omniauth/strategies/uoc/configuration'
+      autoload :UocValidator, 'omniauth/strategies/uoc/uoc_validator'
 
       def initialize(app, options = {}, &block)
         options.symbolize_keys!()

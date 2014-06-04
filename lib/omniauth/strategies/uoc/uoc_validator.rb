@@ -49,9 +49,9 @@ BODY
 
         def make_session_request_body(username,password)
           request_body = MultiXml.parse(SESSION_REQUEST_BODY)
-          request_body.at_css('name').content = username
-          request_body.at_css('password').content = password
-          return request_body.root.to_s
+          request_body['login']['name'] = username
+          request_body['login']['password'] = password
+          return request_body.to_xml
         end
 
       end

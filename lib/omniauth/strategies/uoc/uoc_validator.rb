@@ -63,8 +63,8 @@ BODY
 
         def make_session_request_body(username,password)
           request_body = MultiXml.parse(SESSION_REQUEST_BODY)
-          request_body['login']['name'] = username
-          request_body['login']['password'] = password
+          request_body['session']['name'] = username
+          request_body['session']['password'] = password
           return request_body.to_xml
         end
 

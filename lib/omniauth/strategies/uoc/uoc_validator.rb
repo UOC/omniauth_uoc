@@ -65,7 +65,7 @@ BODY
           request_body = MultiXml.parse(SESSION_REQUEST_BODY)
           request_body['session']['name'] = username
           request_body['session']['password'] = password
-          return request_body.to_xml
+          request_body['session'].to_xml :root => :session
         end
 
       end

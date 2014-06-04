@@ -1,7 +1,7 @@
 require 'omniauth'
 module OmniAuth
   module Strategies
-    class UOC
+    class Uoc
       include OmniAuth::Strategy
 
       autoload :Configuration, 'omniauth/strategies/uoc/configuration'
@@ -9,7 +9,7 @@ module OmniAuth
       def initialize(app, options = {}, &block)
         options.symbolize_keys!()
         super(app, {:name=> :uoc}.merge(options), &block)
-        @configuration = OmniAuth::Strategies::UOC::Configuration.new(options)
+        @configuration = OmniAuth::Strategies::Uoc::Configuration.new(options)
       end
 
       protected
@@ -33,7 +33,7 @@ module OmniAuth
       def callback_phase
         creds = session.delete 'omniauth.uoc'
         return fail!(:no_credentials) unless creds
-        validator = UOCValidator.new(@configuration, creds['username'], creds['password'])
+        validator = UocValidator.new(@configuration, creds['username'], creds['password'])
         @user_info = validator.user_info
 
         return fail!(:invalid_credentials) if @user_info.nil? || @user_info.empty?

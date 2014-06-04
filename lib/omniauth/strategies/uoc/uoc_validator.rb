@@ -3,8 +3,8 @@ require 'faraday'
 
 module OmniAuth
   module Strategies
-    class UOC
-      class UOCValidator
+    class Uoc
+      class UocValidator
         SESSION_REQUEST_BODY = <<-BODY.strip
 <login>
   <name>%s</name>

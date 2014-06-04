@@ -27,11 +27,19 @@ BODY
           response = make_session_request
           unless response.code.to_i != 200 || response.body.nil? || response.body == ''
             doc = MultiXml.parse(response.body)
-            response = {}
             session = doc.xpath('//session').first
-            session.children.each do |node|
-              response[node.name] = node.text
-            end
+            {
+                :name => session.find(:fullname).first.text,
+                :email => session.find(:email).first.text,
+                :nickname => session.find(:login).first.text,
+                :extra => {
+                    :s => session.find('id').first.text,
+                    :user_id => session.find('userId').first.text,
+                    :user_number => session.find('userNumber').first.text,
+                    :lang => session.find('lang').first.text,
+                    :locale => session.find('locale').first.text,
+                }
+            }
           else
             OmniAuth.logger.send(:warn, "(crowd) [retrieve_user_info!] response code: #{response.code.to_s}")
             OmniAuth.logger.send(:warn, "(crowd) [retrieve_user_info!] response body: #{response.body}")

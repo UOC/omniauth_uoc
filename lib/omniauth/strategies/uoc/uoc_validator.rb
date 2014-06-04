@@ -47,12 +47,17 @@ BODY
           end
         end
 
-        def make_request(uri, body=nil)
-
-        end
-
         def make_session_request
-          make_request(@session_uri, make_session_request_body(@username, @password))
+          conn = Faraday.new(:url => @session_uri.to_s) do |faraday|
+            faraday.request  :url_encoded             # form-encode POST params
+            # faraday.response :logger                  # log requests to STDOUT
+            faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+          end
+
+          conn.post do |req|
+            req.headers['Content-Type'] = @configuration.DEFAULT_CONTENT_TYPE
+            req.body = make_session_request_body(@username, @password)
+          end
         end
 
         def make_session_request_body(username,password)

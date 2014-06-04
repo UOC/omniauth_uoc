@@ -27,18 +27,17 @@ BODY
         def retrieve_user_info!
           response = make_session_request
           unless response.status.to_i != 201 || response.body.nil? || response.body == ''
-            doc = MultiXml.parse(response.body)
-            session = doc.xpath('//session').first
+            xml = MultiXml.parse(response.body)
             {
-                :name => session.find(:fullname).first.text,
-                :email => session.find(:email).first.text,
-                :nickname => session.find(:login).first.text,
+                :name => xml['session']['fullname'],
+                :email => xml['session']['email'],
+                :nickname =>xml['session']['login'],
                 :extra => {
-                    :s => session.find('id').first.text,
-                    :user_id => session.find('userId').first.text,
-                    :user_number => session.find('userNumber').first.text,
-                    :lang => session.find('lang').first.text,
-                    :locale => session.find('locale').first.text,
+                    :s => xml['session']['id'],
+                    :user_id => xml['session']['userId'],
+                    :user_number => xml['session']['userNumber'],
+                    :lang => xml['session']['lang'],
+                    :locale => xml['session']['locale'],
                 }
             }
           else

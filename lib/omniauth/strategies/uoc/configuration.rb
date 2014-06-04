@@ -5,7 +5,6 @@ module OmniAuth
     class Uoc
       class Configuration
         DEFAULT_SESSION_URL = '%s/webapps/campusGateway/sessions'
-        DEFAULT_CONTENT_TYPE = 'application/xml'
 
         attr_reader :session_url
 

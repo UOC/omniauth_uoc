@@ -5,6 +5,7 @@ module OmniAuth
   module Strategies
     class Uoc
       class UocValidator
+        DEFAULT_CONTENT_TYPE = 'application/xml'
         SESSION_REQUEST_BODY = <<-BODY.strip
 <login>
   <name>%s</name>
@@ -55,7 +56,7 @@ BODY
           end
 
           conn.post do |req|
-            req.headers['Content-Type'] = @configuration.DEFAULT_CONTENT_TYPE
+            req.headers['Content-Type'] = DEFAULT_CONTENT_TYPE
             req.body = make_session_request_body(@username, @password)
           end
         end

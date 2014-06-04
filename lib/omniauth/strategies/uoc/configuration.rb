@@ -7,6 +7,8 @@ module OmniAuth
         DEFAULT_SESSION_URL = '%s/webapps/campusGateway/sessions'
         DEFAULT_CONTENT_TYPE = 'application/xml'
 
+        attr_reader :session_url
+
         def initialize(params)
           parse_params params
         end

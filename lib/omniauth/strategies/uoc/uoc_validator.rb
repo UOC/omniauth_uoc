@@ -7,10 +7,10 @@ module OmniAuth
       class UocValidator
         DEFAULT_CONTENT_TYPE = 'application/xml'
         SESSION_REQUEST_BODY = <<-BODY.strip
-<login>
+<session>
   <name>%s</name>
   <password>%s</password>
-</login>
+</session>
 BODY
 
         def initialize(configuration, username, password)

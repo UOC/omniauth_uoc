@@ -26,7 +26,7 @@ BODY
         private
         def retrieve_user_info!
           response = make_session_request
-          unless response.status.to_i != 200 || response.status.to_i != 201 || response.body.nil? || response.body == ''
+          unless response.status.to_i != 201 || response.body.nil? || response.body == ''
             doc = MultiXml.parse(response.body)
             session = doc.xpath('//session').first
             {

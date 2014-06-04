@@ -52,7 +52,7 @@ BODY
         end
 
         def make_session_request
-          conn = Faraday.new(:url => @session_uri.to_s, :ssl => { :verify => false }) do |faraday|
+          conn = Faraday.new(:url => @session_uri.to_s) do |faraday|
             faraday.request  :url_encoded             # form-encode POST params
             faraday.response :logger                  # log requests to STDOUT
             faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP

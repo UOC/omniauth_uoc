@@ -9,7 +9,7 @@ module OmniAuth
 <login>
   <name>%s</name>
   <password>%s</password>
-</logint>
+</login>
 BODY
 
         def initialize(configuration, username, password)

@@ -26,25 +26,29 @@ BODY
         private
         def retrieve_user_info!
           response = make_session_request
+          user_info = nil
           unless response.status.to_i != 201 || response.body.nil? || response.body == ''
             xml = MultiXml.parse(response.body)
-            {
-                :name => xml['session']['fullname'],
-                :email => xml['session']['email'],
-                :nickname =>xml['session']['login'],
-                :extra => {
-                    :s => xml['session']['id'],
-                    :user_id => xml['session']['userId'],
-                    :user_number => xml['session']['userNumber'],
-                    :lang => xml['session']['lang'],
-                    :locale => xml['session']['locale'],
-                }
-            }
-          else
+            if(xml['session']['authenticated'] == 'true')
+              user_info = {
+                  :name => xml['session']['fullname'],
+                  :email => xml['session']['email'],
+                  :nickname =>xml['session']['login'],
+                  :extra => {
+                      :s => xml['session']['id'],
+                      :user_id => xml['session']['userId'],
+                      :user_number => xml['session']['userNumber'],
+                      :lang => xml['session']['lang'],
+                      :locale => xml['session']['locale'],
+                  }
+              }
+            end
+          end
+          if user_info.nil?
             OmniAuth.logger.send(:warn, "(crowd) [retrieve_user_info!] response code: #{response.status.to_s}")
             OmniAuth.logger.send(:warn, "(crowd) [retrieve_user_info!] response body: #{response.body}")
-            nil
           end
+          user_info
         end
 
         def make_session_request

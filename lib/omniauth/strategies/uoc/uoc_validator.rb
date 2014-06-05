@@ -34,13 +34,7 @@ BODY
                   :name => xml['session']['fullname'],
                   :email => xml['session']['email'],
                   :nickname =>xml['session']['login'],
-                  :extra => {
-                      :s => xml['session']['id'],
-                      :user_id => xml['session']['userId'],
-                      :user_number => xml['session']['userNumber'],
-                      :lang => xml['session']['lang'],
-                      :locale => xml['session']['locale'],
-                  }
+                  :extra => xml['session']
               }
             end
           end

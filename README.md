@@ -32,7 +32,7 @@ You will need to configure OmniAuth to use your uoc authentication.  This is gen
 
 ## Contributing
 
-1. Fork it ( https://github.com/rromerogar/omniauth_uoc/fork )
+1. Fork it ( https://github.com/UOC/omniauth_uoc/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
